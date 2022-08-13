@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/components/PopUpMenuBtn.dart';
 import 'package:whatsapp/components/textFormField.dart';
+import 'package:whatsapp/models/chat_model.dart';
 import 'package:whatsapp/pages/camera.dart';
 import 'package:whatsapp/pages/chat.dart';
 import 'package:whatsapp/pages/status.dart';
 
 class WhatsAppHome extends StatefulWidget {
-  const WhatsAppHome({Key? key}) : super(key: key);
+
+  WhatsAppHome({Key? key, required this.userModel}) : super(key: key);
+  final List<UserModel> userModel;
 
   @override
   State<WhatsAppHome> createState() => _WhatsAppHomeState();
@@ -110,9 +113,9 @@ class _WhatsAppHomeState extends State<WhatsAppHome>
             // child: AppBar(toolbarHeight: 0,)),
           body:  TabBarView(
             controller: _tabController,
-            children:const [
+            children: [
             Camera(),
-            Chats(),
+            Chats(userModelChat : widget.userModel),
             Status(),
             Hii(),
           ])

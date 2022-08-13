@@ -6,22 +6,23 @@ List <ChatModel> chatModel = [
     message : "Hey, How do you do?",
     time : "15: 20",
     avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-    isgroup: false,
+    isgroup: false, 
+    id: 1,
   ),
     ChatModel(
     name : "Vashnavi thakur",
     message : "Are you ready!!!",
     time : "17: 14",
     avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-    isgroup: false,
+    isgroup: false, id: 2,
   ),
   
-    ChatModel(
-    name : "vishwaas singh",
-    message : "ha ha ha!!",
-    time : "17: 17",
-    avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", isgroup: true,
-  ),
+  //   ChatModel(
+  //   name : "vishwaas singh",
+  //   message : "ha ha ha!!",
+  //   time : "17: 17",
+  //   avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", isgroup: true, id: 15,
+  // ),
   ];
   List<UserModel> userModel = [
     UserModel(
@@ -29,28 +30,28 @@ List <ChatModel> chatModel = [
       status: "U may call me VICTAR",
       message : "Hey, How do you do?",
       time : "15: 20",
-      avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", isgroup: false,
+      avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", isgroup: false, id: 3,
     ),
     UserModel(
       name : "Vashnavi thakur",
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 4,
     ),
-    UserModel(
-    name : "vishwaas singh",
-    message : "ha ha ha!!",
-    time : "17: 17",
-    avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", isgroup: true,
-  ),
+  //   UserModel(
+  //   name : "vishwaas singh",
+  //   message : "ha ha ha!!",
+  //   time : "17: 17",
+  //   avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", isgroup: true, id: 5,
+  // ),
     UserModel(
       name: "Abhishek Gupta",
       status: "U may call me VICTAR",
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 6,
     ),
     UserModel(
       name: "Cyber wala",
@@ -58,7 +59,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 7,
     ),
     UserModel(
       name: "Grish Singh",
@@ -66,7 +67,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 8,
     ),
     UserModel(
       name: "Aman yadav",
@@ -74,7 +75,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 9,
     ),
     UserModel(
       name: "Anshul",
@@ -82,7 +83,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 10,
     ),
     UserModel(
       name: "Diksha singh",
@@ -90,7 +91,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 11,
     ),
     UserModel(
       name: "Imran",
@@ -98,7 +99,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 12,
     ),
     UserModel(
       name: "Kritek",
@@ -106,7 +107,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 13,
     ),
     UserModel(
       name: "Mayank",
@@ -114,7 +115,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 14,
     ),
     UserModel(
       name: "Nainsi",
@@ -122,7 +123,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 15,
     ),
     UserModel(
       name: "Nikhil",
@@ -130,7 +131,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 16,
     ),
     UserModel(
       name: "Viraj bisht",
@@ -138,7 +139,7 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 17,
     ),
     UserModel(
       name: "Sarvesh",
@@ -146,6 +147,6 @@ List <ChatModel> chatModel = [
       message : "Are you ready!!!",
       time : "17: 14",
       avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", 
-      isgroup: false,
+      isgroup: false, id: 18,
     ),
   ];

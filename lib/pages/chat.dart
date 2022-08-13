@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/components/CustomUser.dart';
-import 'package:whatsapp/data/UserInfo.dart';
+import 'package:whatsapp/models/chat_model.dart';
 import 'package:whatsapp/pages/contact.dart';
 
 
 class Chats extends StatefulWidget {
-  const Chats({ Key? key }) : super(key: key);
+  const Chats({ Key? key, required this.userModelChat }) : super(key: key);
+  final List<UserModel> userModelChat;
 
   @override
   State<Chats> createState() => _ChatsState();
@@ -14,15 +15,14 @@ class Chats extends StatefulWidget {
 class _ChatsState extends State<Chats> {
 
 
-
   @override
   Widget build(BuildContext context){
     return Scaffold(
       body: ListView.builder(
-        itemCount: userModel.length,
+        itemCount: widget.userModelChat.length,
         itemBuilder: (context, i)=>Padding(
-          padding: EdgeInsets.only(top: 2,bottom: i== userModel.length - 1 ? 65.0 : 2.0),
-          child: CustomUser(userModel: userModel[i],isChatPage: true, isContactPage: false,),
+          padding: EdgeInsets.only(top: 2,bottom: i== widget.userModelChat.length - 1 ? 65.0 : 2.0),
+          child: CustomUser(userModel: widget.userModelChat[i],isChatPage: true, isContactPage: false, isLoginPage: false,),
         ),
       ),
       floatingActionButton: FloatingActionButton(

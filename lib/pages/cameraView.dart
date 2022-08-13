@@ -118,7 +118,7 @@ class _CameraViewPageState extends State<CameraViewPage> {
                             decoration: const InputDecoration(
                                 prefixIcon: AppBarActionBtn(
                                   iconName: (Icons.photo_library_outlined),
-                                  ontapAction: Chats(),
+                                  // ontapAction: Chats(),
                                 ),
                                 suffixIcon: AppBarActionBtn(
                                   iconName: Icons.check_circle_outline_sharp,

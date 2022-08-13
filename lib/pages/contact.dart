@@ -46,7 +46,7 @@ class ContactPage extends StatelessWidget {
             else if(userModel[i-2].isgroup == true){
               return Container();
             }
-              return CustomUser(userModel: userModel[i-2], isChatPage: false,isContactPage: true,iconSize: 22, fontSiz: 17, fontW :FontWeight.w500);
+              return CustomUser(userModel: userModel[i-2], isChatPage: false,isContactPage: true,iconSize: 22, fontSiz: 17, fontW :FontWeight.w500, isLoginPage: false,);
             
           },
           ),
