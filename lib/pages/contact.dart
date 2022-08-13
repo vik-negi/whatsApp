@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:whatsapp/components/CustomUser.dart';
 import 'package:whatsapp/components/PopUpMenuBtn.dart';
 import 'package:whatsapp/data/UserInfo.dart';
@@ -9,7 +8,7 @@ import 'package:whatsapp/pages/createGroup.dart';
 class ContactPage extends StatelessWidget {
 
   ContactPage({Key? key}) : super(key: key);
-  List<String> contactPopUp =[
+  final List<String> contactPopUp =[
     "Invite a friend",
     "Contacts",
     "Refrest",
@@ -35,7 +34,7 @@ class ContactPage extends StatelessWidget {
             if(i==0){
               return Padding(padding: const EdgeInsets.only(top: 10),
               child :InkWell(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (builder)=>CreateGroupPage())),
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (builder)=>const CreateGroupPage())),
                 child :userContactOption(Icons.group, "New group")
               )
               );
@@ -72,13 +71,13 @@ class ContactPage extends StatelessWidget {
   }
   userContactOption(IconData img, String name){
     return Padding(
-      padding: EdgeInsets.symmetric(vertical:5.0),
+      padding: const EdgeInsets.symmetric(vertical:5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Color.fromARGB(205, 9, 125, 101),
+              backgroundColor: const Color.fromARGB(205, 9, 125, 101),
               child: Icon(img, color: Colors.white,),
             ),
             title: Text(name,

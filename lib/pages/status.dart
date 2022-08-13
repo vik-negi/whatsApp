@@ -9,6 +9,7 @@ class Status extends StatefulWidget {
 }
 
 class _StatusState extends State<Status> {
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -19,10 +20,8 @@ class _StatusState extends State<Status> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child : const Text("Status"),
-      ),
+    return const Center(
+      child: Text("Status"),
     );
   }
 }

@@ -1,13 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:flutter_svg/svg.dart';
-import 'package:whatsapp/data/UserInfo.dart';
 import 'package:whatsapp/models/chat_model.dart';
 import 'package:whatsapp/pages/userChatPage.dart';
 
 
 class CustomUser extends StatelessWidget {
 
-  CustomUser( {
+  const CustomUser( {
     required this.userModel,
     required this.isChatPage,
     required this.isContactPage,
@@ -16,11 +15,11 @@ class CustomUser extends StatelessWidget {
     this.fontW,
    Key? key}) : super(key: key);
   final UserModel userModel;
-  bool isChatPage;
-  bool isContactPage;
-  double? iconSize;
-  double? fontSiz;
-  FontWeight? fontW;
+  final bool isChatPage;
+  final bool isContactPage;
+  final double? iconSize;
+  final double? fontSiz;
+  final FontWeight? fontW;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -72,7 +71,7 @@ class CustomUser extends StatelessWidget {
                     ):Container(),
                     isContactPage?
                     userModel.status != null?
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width*0.70,
                       child: Text(
                         userModel.status!,maxLines: 1,))
@@ -90,7 +89,7 @@ class CustomUser extends StatelessWidget {
 
 class CircularAvatarWidget extends StatelessWidget {
 
-  CircularAvatarWidget({
+  const CircularAvatarWidget({
     Key? key,
     required this.userModel,
     required this.radiusOfAvatar,
@@ -98,8 +97,8 @@ class CircularAvatarWidget extends StatelessWidget {
     required this.isContactPage
   }) : super(key: key);
   final double radiusOfAvatar;
-  bool isChatPage;
-  bool isContactPage;
+  final bool isChatPage;
+  final bool isContactPage;
 
   final UserModel userModel;
 
@@ -109,7 +108,7 @@ class CircularAvatarWidget extends StatelessWidget {
       radius: radiusOfAvatar,
 
       foregroundColor: Theme.of(context).primaryColor,
-      backgroundColor: isContactPage? Color.fromARGB(205, 9, 125, 101):Colors.blueGrey,
+      backgroundColor: isContactPage? const  Color.fromARGB(205, 9, 125, 101):Colors.blueGrey,
       // backgroundImage: NetworkImage(userModel[i].avatarUrl),
       child:  SvgPicture.asset(userModel.isgroup?"assets/svgs/group.svg":"assets/svgs/person.svg", color: const Color.fromARGB(255, 207, 207, 207), width: 32,height: 32,),
       // :SvgPicture.asset("assets/svgs/person.svg", color: const Color.fromARGB(255, 207, 207, 207), width: 32,height: 32,),

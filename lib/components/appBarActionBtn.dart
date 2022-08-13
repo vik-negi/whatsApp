@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppBarActionBtn extends StatelessWidget {
-  Widget ?ontapAction;
-  IconData iconName;
-  double? iconSize;
+  final Widget ?ontapAction;
+  final IconData iconName;
+  final double? iconSize;
 
-  AppBarActionBtn({
+  const AppBarActionBtn({
     Key? key, 
     this.ontapAction, 
     required this.iconName,

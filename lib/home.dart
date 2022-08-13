@@ -63,9 +63,9 @@ class _WhatsAppHomeState extends State<WhatsAppHome>
                   isScrollable: true,
                   controller: _tabController,
                   indicatorColor: Colors.white,
-                  labelPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                   tabs: <Widget>[
-                    Container(
+                    SizedBox(
                           width: MediaQuery.of(context).size.width*0.1,
                           child: const Tab(
                             child: Icon(Icons.camera_alt)
@@ -88,13 +88,13 @@ class _WhatsAppHomeState extends State<WhatsAppHome>
                             ]),
                             ),
                         ),
-                    Container(
+                    SizedBox(
                           width: MediaQuery.of(context).size.width*0.3,
                           child: const Tab(
                             child: Text("STATUS"),
                             ),
                         ),
-                    Container(
+                    SizedBox(
                           width: MediaQuery.of(context).size.width*0.3,
                           child: const Tab(
                             child: Text("CALLS"),
@@ -110,7 +110,7 @@ class _WhatsAppHomeState extends State<WhatsAppHome>
             // child: AppBar(toolbarHeight: 0,)),
           body:  TabBarView(
             controller: _tabController,
-            children: [
+            children:const [
             Camera(),
             Chats(),
             Status(),

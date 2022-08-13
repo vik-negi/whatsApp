@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:whatsapp/data/UserInfo.dart';
 import 'package:whatsapp/models/chat_model.dart';
 
 class CreateGroupPage extends StatefulWidget {
-  CreateGroupPage({Key? key}) : super(key: key);
+  const CreateGroupPage({Key? key}) : super(key: key);
 
   @override
   State<CreateGroupPage> createState() => _CreateGroupPageState();
@@ -143,11 +142,11 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
   }
 
   userContact(UserModel userModel) {
-    return Container(
+    return SizedBox(
       height: 64,
       child: ListTile(
         minVerticalPadding: 0,
-        leading: Container(
+        leading: SizedBox(
           // color: Colors.black,
           height: 48,
           width: 45,

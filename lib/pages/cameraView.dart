@@ -5,11 +5,11 @@ import 'package:whatsapp/pages/chat.dart';
 import 'package:video_player/video_player.dart';
 
 class CameraViewPage extends StatefulWidget {
-  String path;
-  bool isCamera;
+  final  String path;
+  final bool isCamera;
   
 
-  CameraViewPage({Key? key, required this.path, required this.isCamera})
+  const CameraViewPage({Key? key, required this.path, required this.isCamera})
       : super(key: key);
 
 
@@ -44,7 +44,7 @@ class _CameraViewPageState extends State<CameraViewPage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         actions: [
-          AppBarActionBtn(
+          const AppBarActionBtn(
             iconName: Icons.crop_rotate,
             iconSize: 27,
           ),
@@ -52,16 +52,16 @@ class _CameraViewPageState extends State<CameraViewPage> {
               onPressed: () {
                 print("sndn");
               },
-              icon: Icon(Icons.ac_unit)),
-          AppBarActionBtn(
+              icon: const Icon(Icons.ac_unit)),
+          const AppBarActionBtn(
             iconName: Icons.emoji_emotions,
             iconSize: 27,
           ),
-          AppBarActionBtn(
+          const AppBarActionBtn(
             iconName: Icons.title,
             iconSize: 27,
           ),
-          AppBarActionBtn(
+          const AppBarActionBtn(
             iconName: Icons.edit,
             iconSize: 27,
           ),
@@ -73,7 +73,7 @@ class _CameraViewPageState extends State<CameraViewPage> {
         color: Colors.black,
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 162,
               child: widget.isCamera
@@ -115,10 +115,10 @@ class _CameraViewPageState extends State<CameraViewPage> {
                           ),
                           width: MediaQuery.of(context).size.width * 0.82,
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 prefixIcon: AppBarActionBtn(
                                   iconName: (Icons.photo_library_outlined),
-                                  ontapAction: const Chats(),
+                                  ontapAction: Chats(),
                                 ),
                                 suffixIcon: AppBarActionBtn(
                                   iconName: Icons.check_circle_outline_sharp,

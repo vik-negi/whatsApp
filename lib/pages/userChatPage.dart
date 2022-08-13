@@ -7,7 +7,7 @@ import 'package:whatsapp/components/OwnMsgCard.dart';
 import 'package:whatsapp/components/PopUpMenuBtn.dart';
 import 'package:whatsapp/models/chat_model.dart';
 import 'package:whatsapp/models/more_option_to_send.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:socket_io_client/socket_io_client.dart' as io;
 
 
 class UserChatPage extends StatefulWidget {
@@ -69,7 +69,7 @@ class _UserChatPageState extends State<UserChatPage> {
   bool showEnojiOption = false;
   FocusNode focusNode = FocusNode();
   final TextEditingController _txtController = TextEditingController();
-  late IO.Socket socket;
+  late io.Socket socket;
   @override
   void initState() {
     super.initState();
@@ -83,19 +83,23 @@ class _UserChatPageState extends State<UserChatPage> {
     });
   }
 
-  Future <void> initSocket() async{
-    try{
-      socket = IO.io("http://172.11.10.228:5000",<String, dynamic>{
+  void initSocket(){
+    // try{
+      socket = io.io("http://172.11.11.137:5000"
+      ,<String, dynamic>{
         "transports":["websocket"],
-        "autoConnect": true,
+        "autoConnect": false,
       }
       );
-      // socket.connect();
-      socket.onConnect((data) => print("connected"));
-      print(socket.connected);
-    }catch(e){
-      print(e);
-    }
+      socket.connect();
+      socket.onConnect((data){
+      print("connected");
+    });
+    // }catch(e){
+    //   print(e);
+    // }
+    print(socket.connected);
+    socket.emit("/test","Hello world");
   }
 
   @override
@@ -110,16 +114,16 @@ class _UserChatPageState extends State<UserChatPage> {
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: userChatAppBar(context),
-          body: Container(
+          body: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height ,
             child: WillPopScope(
               child: Stack(
                 children: [
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height - 140,
                     child: ListView(
-                    children: [
+                    children: const [
                       OwnMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
                       OtherSideMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
                       OwnMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
@@ -139,7 +143,7 @@ class _UserChatPageState extends State<UserChatPage> {
                     ],
                 ),
                   ), 
-                Positioned(child: BottomTextMessaging(context))
+                Positioned(child: bottomTextMessaging(context))
                 ],
               ),
               onWillPop: () {
@@ -159,7 +163,7 @@ class _UserChatPageState extends State<UserChatPage> {
     );
   }
 
-  Align BottomTextMessaging(BuildContext context) {
+  Align bottomTextMessaging(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Column(
@@ -168,7 +172,7 @@ class _UserChatPageState extends State<UserChatPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width - 55,
                 child: Card(
                   margin: const EdgeInsets.only(left: 4, right: 2, bottom: 6),
@@ -237,13 +241,13 @@ class _UserChatPageState extends State<UserChatPage> {
               ),
             ],
           ),
-          showEnojiOption ? EmojiOptions() : Container(),
+          showEnojiOption ? emojiOptions() : Container(),
         ],
       ),
     );
   }
 
-  SizedBox EmojiOptions() {
+  SizedBox emojiOptions() {
     return SizedBox(
       height: 250,
       child: EmojiPicker(

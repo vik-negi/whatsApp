@@ -1,19 +1,19 @@
 import "package:flutter/material.dart";
 
 class PopupMenuBtn extends StatelessWidget {
-  PopupMenuBtn({
+  const PopupMenuBtn({
     Key? key, 
     required this.items,
   }) : super(key: key);
 
-  List<String> items;
+  final List<String> items;
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       onSelected: (value){
         print(value);
       },
-      itemBuilder: (BuildContext){
+      itemBuilder: (context){
       return  [
         for(var i=0;i<items.length;i++) popMenuItm(items[i], items[i]),
       ];

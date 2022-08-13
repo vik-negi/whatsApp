@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class OtherSideMsgCard extends StatelessWidget {
-  OtherSideMsgCard({Key? key, required this.text}) : super(key: key);
-  String text;
+  const OtherSideMsgCard({Key? key, required this.text}) : super(key: key);
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -25,7 +25,7 @@ class OtherSideMsgCard extends StatelessWidget {
                     right: text.length>37?20:75,
                   ),
                   child: Text(
-                    text, style: TextStyle(fontSize: 16,),)
+                    text, style:const  TextStyle(fontSize: 16,),)
                 ),
                 text.length>30?const SizedBox(width: 45,):const SizedBox(width:0),
               const Positioned(

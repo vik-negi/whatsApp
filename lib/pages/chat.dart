@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/components/CustomUser.dart';
 import 'package:whatsapp/data/UserInfo.dart';
-import 'package:whatsapp/main.dart';
-import 'package:whatsapp/models/chat_model.dart';
 import 'package:whatsapp/pages/contact.dart';
 
 
@@ -22,7 +20,7 @@ class _ChatsState extends State<Chats> {
     return Scaffold(
       body: ListView.builder(
         itemCount: userModel.length,
-        itemBuilder: (BuildContext, i)=>Padding(
+        itemBuilder: (context, i)=>Padding(
           padding: EdgeInsets.only(top: 2,bottom: i== userModel.length - 1 ? 65.0 : 2.0),
           child: CustomUser(userModel: userModel[i],isChatPage: true, isContactPage: false,),
         ),

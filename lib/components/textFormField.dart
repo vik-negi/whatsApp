@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 int no=0;
 class Hii extends StatefulWidget {
-  Hii({Key? key}) : super(key: key);
+  const Hii({Key? key}) : super(key: key);
 
   @override
   State<Hii> createState() => _HiiState();

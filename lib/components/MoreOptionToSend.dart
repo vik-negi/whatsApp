@@ -9,7 +9,7 @@ class MoreOptionsToSend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 380,
       width: MediaQuery.of(context).size.width,
       child: Card(
@@ -84,7 +84,7 @@ class OptionsToSend extends StatelessWidget {
       {Key? key, this.iconWidget, this.name, this.color, this.functionality})
       : super(key: key);
   final iconWidget;
-  final name;
+  final  name;
   final color;
   final functionality;
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp/main.dart';
 
 class Calls extends StatefulWidget {
   const Calls({ Key? key }) : super(key: key);
@@ -12,8 +11,6 @@ class _CallsState extends State<Calls> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child : const Text("Calls"),
-    );
+    return const Text("Calls");
   }
 }
