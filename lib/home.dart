@@ -7,9 +7,11 @@ import 'package:whatsapp/pages/chat.dart';
 import 'package:whatsapp/pages/status.dart';
 
 class WhatsAppHome extends StatefulWidget {
-
-  WhatsAppHome({Key? key, required this.userModel}) : super(key: key);
+  const WhatsAppHome(
+      {Key? key, required this.userModel, required this.sourceChat})
+      : super(key: key);
   final List<UserModel> userModel;
+  final UserModel sourceChat;
 
   @override
   State<WhatsAppHome> createState() => _WhatsAppHomeState();
@@ -40,6 +42,7 @@ class _WhatsAppHomeState extends State<WhatsAppHome>
     super.initState();
     _tabController = TabController(length: 4, vsync: this, initialIndex: 1);
   }
+
   int contrr = 1;
 
   @override
@@ -48,80 +51,83 @@ class _WhatsAppHomeState extends State<WhatsAppHome>
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-          appBar:  
-          // PreferredSize(
-            // preferredSize: const Size.fromHeight(75),
-            // child: Visibility(
+          appBar:
+              // PreferredSize(
+              // preferredSize: const Size.fromHeight(75),
+              // child: Visibility(
               // visible: true,
-              // child: 
+              // child:
               AppBar(
-                title: const Text("WhatsApp"),
-                elevation: 0,
-                actions: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-                  PopupMenuBtn(items: homePagePopUpMenu)
-                  // Icon(Icons.menu),
-                ],
-                bottom: TabBar(
-                  isScrollable: true,
-                  controller: _tabController,
-                  indicatorColor: Colors.white,
-                  labelPadding: const EdgeInsets.symmetric(horizontal: 0.0),
-                  tabs: <Widget>[
-                    SizedBox(
-                          width: MediaQuery.of(context).size.width*0.1,
-                          child: const Tab(
-                            child: Icon(Icons.camera_alt)
-                            ),
-                        ),
-                    Container(
-                          width: MediaQuery.of(context).size.width*0.3,
-                          alignment: Alignment.center,
-                          child:  Tab(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children:const [
-                              Text("CHATS"),
-                              SizedBox(width: 4,),
-                              CircleAvatar(
-                                radius: 10,
-                                backgroundColor: Colors.white,
-                                child: Text("11", style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
-                              )
-                            ]),
-                            ),
-                        ),
-                    SizedBox(
-                          width: MediaQuery.of(context).size.width*0.3,
-                          child: const Tab(
-                            child: Text("STATUS"),
-                            ),
-                        ),
-                    SizedBox(
-                          width: MediaQuery.of(context).size.width*0.3,
-                          child: const Tab(
-                            child: Text("CALLS"),
-                            ),
-                        ),
-                  ],
+            title: const Text("WhatsApp"),
+            elevation: 0,
+            actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+              PopupMenuBtn(items: homePagePopUpMenu)
+              // Icon(Icons.menu),
+            ],
+            bottom: TabBar(
+              isScrollable: true,
+              controller: _tabController,
+              indicatorColor: Colors.white,
+              labelPadding: const EdgeInsets.symmetric(horizontal: 0.0),
+              tabs: <Widget>[
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  child: const Tab(child: Icon(Icons.camera_alt)),
                 ),
-              ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  alignment: Alignment.center,
+                  child: Tab(
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text("CHATS"),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          CircleAvatar(
+                            radius: 10,
+                            backgroundColor: Colors.white,
+                            child: Text("11",
+                                style: TextStyle(
+                                    fontSize: 11, fontWeight: FontWeight.w600)),
+                          )
+                        ]),
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: const Tab(
+                    child: Text("STATUS"),
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: const Tab(
+                    child: Text("CALLS"),
+                  ),
+                ),
+              ],
+            ),
+          ),
           //   ),
           // ),
           // :PreferredSize(
-            // preferredSize: Size.fromHeight(0),
-            // child: AppBar(toolbarHeight: 0,)),
-          body:  TabBarView(
-            controller: _tabController,
-            children: [
+          // preferredSize: Size.fromHeight(0),
+          // child: AppBar(toolbarHeight: 0,)),
+          body: TabBarView(controller: _tabController, children: [
             Camera(),
-            Chats(userModelChat : widget.userModel),
-            Status(),
+            Chats(
+              userModelChat: widget.userModel,
+              sourceChat: widget.sourceChat,
+            ),
+            Status(
+              userModelChat: widget.userModel,
+              sourceChat: widget.sourceChat,
+            ),
             Hii(),
-          ])
-          
-          ),
+          ])),
     );
   }
-
 }

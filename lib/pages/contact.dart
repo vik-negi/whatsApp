@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp/components/CustomUser.dart';
 import 'package:whatsapp/components/PopUpMenuBtn.dart';
 import 'package:whatsapp/data/UserInfo.dart';
+import 'package:whatsapp/global.dart' as globals;
 import 'package:whatsapp/models/chat_model.dart';
 import 'package:whatsapp/pages/createGroup.dart';
 
 class ContactPage extends StatelessWidget {
 
-  ContactPage({Key? key}) : super(key: key);
+  ContactPage({Key? key,
+  required this.sourceChat,
+  }) : super(key: key);
+  final UserModel  sourceChat;
   final List<String> contactPopUp =[
     "Invite a friend",
     "Contacts",
@@ -46,8 +50,7 @@ class ContactPage extends StatelessWidget {
             else if(userModel[i-2].isgroup == true){
               return Container();
             }
-              return CustomUser(userModel: userModel[i-2], isChatPage: false,isContactPage: true,iconSize: 22, fontSiz: 17, fontW :FontWeight.w500, isLoginPage: false,);
-            
+              return CustomUser(userModel: userModel[i-2], isChatPage: false,isContactPage: true,iconSize: 22, fontSiz: 17, fontW :FontWeight.w500, isLoginPage: false, sourceChat: sourceChat);
           },
           ),
     );

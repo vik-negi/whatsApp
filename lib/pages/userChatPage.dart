@@ -1,18 +1,21 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:whatsapp/components/CustomUser.dart';
 import 'package:whatsapp/components/MoreOptionToSend.dart';
 import 'package:whatsapp/components/OtherSideMsg.dart';
 import 'package:whatsapp/components/OwnMsgCard.dart';
 import 'package:whatsapp/components/PopUpMenuBtn.dart';
 import 'package:whatsapp/models/chat_model.dart';
+import 'package:whatsapp/models/message_model.dart';
 import 'package:whatsapp/models/more_option_to_send.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
-
 class UserChatPage extends StatefulWidget {
-  const UserChatPage(this.userModel, {Key? key}) : super(key: key);
+  const UserChatPage(this.userModel, this.sourceChat, {Key? key})
+      : super(key: key);
   final UserModel userModel;
+  final UserModel sourceChat;
 
   @override
   State<UserChatPage> createState() => _UserChatPageState();
@@ -28,45 +31,30 @@ class _UserChatPageState extends State<UserChatPage> {
     "Wallpaper",
     "More"
   ];
-  List<MoreOption> moreOptionsToSend =[
+  List<MoreOption> moreOptionsToSend = [
     MoreOption(
-      name : "Document",
-      iconName : Icons.insert_drive_file,
-      color : Colors.indigo
-    ),
+        name: "Document",
+        iconName: Icons.insert_drive_file,
+        color: Colors.indigo),
     MoreOption(
-      name : "Document",
-      iconName : Icons.insert_drive_file,
-      color : Colors.indigo
-    ),
+        name: "Document",
+        iconName: Icons.insert_drive_file,
+        color: Colors.indigo),
+    MoreOption(name: "Camera", iconName: Icons.camera_alt, color: Colors.pink),
     MoreOption(
-      name : "Camera",
-      iconName : Icons.camera_alt,
-      color : Colors.pink
-    ),
+        name: "Audio", iconName: Icons.headset_rounded, color: Colors.orange),
     MoreOption(
-      name : "Audio",
-      iconName : Icons.headset_rounded,
-      color : Colors.orange
-    ),
+        name: "Payment", iconName: Icons.currency_rupee, color: Colors.teal),
     MoreOption(
-      name : "Payment",
-      iconName : Icons.currency_rupee,
-      color : Colors.teal
-    ),
-    MoreOption(
-      name : "Location",
-      iconName : Icons.location_pin,
-      color : Colors.green
-    ),
-    MoreOption(
-      name : "Contact",
-      iconName : Icons.person,
-      color : Colors.blue
-    )
+        name: "Location", iconName: Icons.location_pin, color: Colors.green),
+    MoreOption(name: "Contact", iconName: Icons.person, color: Colors.blue)
   ];
 
+  List<MessageModel> messages = [];
+
   bool showEnojiOption = false;
+  bool sendButton = false;
+  final ScrollController _scrollController = ScrollController();
   FocusNode focusNode = FocusNode();
   final TextEditingController _txtController = TextEditingController();
   late io.Socket socket;
@@ -83,30 +71,53 @@ class _UserChatPageState extends State<UserChatPage> {
     });
   }
 
-  void initSocket(){
-    // try{
-      socket = io.io("http://172.11.11.137:5000"
-      ,<String, dynamic>{
-        "transports":["websocket"],
-        "autoConnect": false,
-      }
-      );
-      socket.connect();
-      socket.onConnect((data){
+  void initSocket() {
+    socket = io.io(
+        // "http://172.11.11.137:5000" //college wifi
+        // "http://192.168.100.113:5000" //wifi
+        "http://192.168.43.65:5000" // mobile internet
+        ,
+        <String, dynamic>{
+          "transports": ["websocket"],
+          "autoConnect": false,
+        });
+    socket.connect();
+    socket.onConnect((data) {
       print("connected");
+      socket.onConnect((msg) {
+        print(msg);
+        setMessage("destination", msg["msg"]);
+      });
     });
-    // }catch(e){
-    //   print(e);
-    // }
     print(socket.connected);
-    socket.emit("/test","Hello world");
+    socket.emit("signin", widget.sourceChat.id);
+  }
+
+  void sendMsg(String msg, int sourceId, int targetId) {
+    setMessage("source", msg);
+    socket
+        .emit("msg", {"msg": msg, "sourceId": sourceId, "targetId": targetId});
+  }
+
+  // String time = DateFormat.jm().format(DateTime.now()).toString();
+  void setMessage(String type, String msg) {
+    MessageModel messageModel = MessageModel(
+        msg: msg,
+        type: type,
+        time: DateTime.now().toString().substring(10, 16));
+    setState(() {
+      setState(() {
+        messages.add(messageModel);
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset("assets/img/whatsappbg.png",
+        Image.asset(
+          "assets/img/whatsappbg.png",
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           fit: BoxFit.cover,
@@ -116,34 +127,31 @@ class _UserChatPageState extends State<UserChatPage> {
           appBar: userChatAppBar(context),
           body: SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height ,
+            height: MediaQuery.of(context).size.height,
             child: WillPopScope(
-              child: Stack(
+              child: Column(
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height - 140,
-                    child: ListView(
-                    children: const [
-                      OwnMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
-                      OtherSideMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
-                      OwnMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
-                      OtherSideMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
-                      OtherSideMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
-                      OwnMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
-                      OtherSideMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
-                      OwnMsgCard(text: "vhbj bij jnijo kni jbi vjb buj bjbiikrt fctgfyhgj hvh nidfcj jdncisd svndi"),
-                      OtherSideMsgCard(text: "vhndi hry"),
-                      OwnMsgCard(text: "vhbj bijnidfcj jdncisd svndi"),
-                      OwnMsgCard(text: "vhbj bijnidfcj jdncisd svndi"),
-                      OwnMsgCard(text: "vhbj bijnidfcj jdncisd svndi"),
-                      OwnMsgCard(text: "vhbj bijnidfcj jdncisd svndi"),
-                      OtherSideMsgCard(text: "vhndi hry"),
-                      OtherSideMsgCard(text: "vhndi hry"),
-                      OtherSideMsgCard(text: "vhndi hry"),
-                    ],
-                ),
-                  ), 
-                Positioned(child: bottomTextMessaging(context))
+                  Expanded(
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      itemCount: messages.length,
+                      itemBuilder: (context, i) {
+                        if (i == messages.length) {
+                          return Container(
+                            height: 60,
+                          );
+                        }
+                        if (messages[i].type == "source") {
+                          return OwnMsgCard(
+                              text: messages[i].msg, time: messages[i].time);
+                        } else {
+                          return OtherSideMsgCard(
+                              text: messages[i].msg, time: messages[i].time);
+                        }
+                      },
+                    ),
+                  ),
+                  bottomTextMessaging(context)
                 ],
               ),
               onWillPop: () {
@@ -166,83 +174,134 @@ class _UserChatPageState extends State<UserChatPage> {
   Align bottomTextMessaging(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width - 55,
-                child: Card(
-                  margin: const EdgeInsets.only(left: 4, right: 2, bottom: 6),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25)),
-                  child: TextFormField(
-                    controller: _txtController,
-                    focusNode: focusNode,
-                    textAlignVertical: TextAlignVertical.center,
-                    maxLines: 5,
-                    minLines: 1,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Message",
-                      hintStyle: const TextStyle(fontSize: 18),
-                      prefixIcon: IconButton(
-                        icon: const Icon(
-                          Icons.emoji_emotions_outlined,
-                          size: 28,
-                          color: Colors.grey,
-                        ),
-                        onPressed: () {
-                          focusNode.unfocus();
-                          focusNode.canRequestFocus = false;
-                          setState(() {
-                            showEnojiOption = !showEnojiOption;
-                          });
+      child: SizedBox(
+        height: 60,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 2.0, right: 2),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 55,
+                    child: Card(
+                      margin:
+                          const EdgeInsets.only(left: 4, right: 2, bottom: 6),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
+                      child: TextFormField(
+                        onChanged: (value) {
+                          value.isNotEmpty
+                              ? setState(() {
+                                  sendButton = true;
+                                })
+                              : setState(() {
+                                  sendButton = false;
+                                });
                         },
-                      ),
-                      contentPadding: const EdgeInsets.all(5),
-                      suffixIcon: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (builder) {
-                                    // return const MoreOptionsToSend();
-                                    return Mots(height: 380, list: moreOptionsToSend,borderR: 15, );
-                                  },
-                                );
-                              },
-                              icon: const Icon(Icons.attach_file)),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.currency_rupee)),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.camera_alt)),
-                        ],
+                        controller: _txtController,
+                        focusNode: focusNode,
+                        textAlignVertical: TextAlignVertical.center,
+                        maxLines: 5,
+                        minLines: 1,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Message",
+                          hintStyle: const TextStyle(fontSize: 18),
+                          prefixIcon: IconButton(
+                            icon: const Icon(
+                              Icons.emoji_emotions_outlined,
+                              size: 28,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              focusNode.unfocus();
+                              focusNode.canRequestFocus = false;
+                              setState(() {
+                                showEnojiOption = !showEnojiOption;
+                              });
+                            },
+                          ),
+                          contentPadding: const EdgeInsets.all(5),
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.09,
+                                  child: IconBtn(
+                                    icon: Icons.attach_file,
+                                    iconOnPress: () {
+                                      showModalBottomSheet(
+                                        backgroundColor: Colors.transparent,
+                                        context: context,
+                                        builder: (builder) {
+                                          // return const MoreOptionsToSend();
+                                          return Mots(
+                                            height: 380,
+                                            list: moreOptionsToSend,
+                                            borderR: 15,
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.09,
+                                  child: const IconBtn(
+                                    icon: Icons.currency_rupee,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.09,
+                                  child: const IconBtn(
+                                    icon: Icons.camera_alt,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6.0),
+                    child: CircleAvatar(
+                      radius: 24.5,
+                      backgroundColor: const Color(0xff128c7E),
+                      child: IconButton(
+                          onPressed: () {
+                            if (sendButton) {
+                              _scrollController.animateTo(
+                                  _scrollController.position.maxScrollExtent,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeOut);
+                              sendMsg(_txtController.text, widget.sourceChat.id,
+                                  widget.userModel.id);
+                              _txtController.clear();
+                              setState(() {
+                                sendButton = false;
+                              });
+                            }
+                          },
+                          icon: Icon(sendButton ? Icons.send : Icons.mic,
+                              color: Colors.white, size: sendButton ? 23 : 25)),
+                    ),
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 6.0),
-                child: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: const Color(0xff128c7E),
-                  child:
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.mic)),
-                ),
-              ),
-            ],
-          ),
-          showEnojiOption ? emojiOptions() : Container(),
-        ],
+            ),
+            showEnojiOption ? emojiOptions() : Container(),
+          ],
+        ),
       ),
     );
   }
@@ -305,7 +364,10 @@ class _UserChatPageState extends State<UserChatPage> {
             CircularAvatarWidget(
               isContactPage: true,
               isChatPage: false,
-                userModel: widget.userModel, radiusOfAvatar: 22),
+              userModel: widget.userModel,
+              radiusOfAvatar: 22,
+              isStatusPage: false,
+            ),
           ]),
         ),
       ),
@@ -346,4 +408,29 @@ class _UserChatPageState extends State<UserChatPage> {
   // }
 }
 
+class IconBtn extends StatelessWidget {
+  const IconBtn({
+    Key? key,
+    this.iconColor,
+    this.iconSize,
+    required this.icon,
+    this.iconOnPress,
+  }) : super(key: key);
 
+  // final List<MoreOption> moreOptionsToSend;
+  final IconData icon;
+  final Color? iconColor;
+  final double? iconSize;
+  final void Function()? iconOnPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: iconOnPress ?? () {},
+        icon: Icon(
+          icon,
+          color: iconColor ?? Colors.grey,
+          size: iconSize ?? 24,
+        ));
+  }
+}

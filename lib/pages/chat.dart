@@ -5,8 +5,12 @@ import 'package:whatsapp/pages/contact.dart';
 
 
 class Chats extends StatefulWidget {
-  const Chats({ Key? key, required this.userModelChat }) : super(key: key);
+  const Chats({ Key? key, 
+  required this.userModelChat,
+  required this.sourceChat
+  }) : super(key: key);
   final List<UserModel> userModelChat;
+  final UserModel sourceChat;
 
   @override
   State<Chats> createState() => _ChatsState();
@@ -22,14 +26,14 @@ class _ChatsState extends State<Chats> {
         itemCount: widget.userModelChat.length,
         itemBuilder: (context, i)=>Padding(
           padding: EdgeInsets.only(top: 2,bottom: i== widget.userModelChat.length - 1 ? 65.0 : 2.0),
-          child: CustomUser(userModel: widget.userModelChat[i],isChatPage: true, isContactPage: false, isLoginPage: false,),
+          child: CustomUser(userModel: widget.userModelChat[i],isChatPage: true, isContactPage: false, isLoginPage: false, sourceChat: widget.sourceChat,),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.primary,
         child: const Icon(Icons.message),
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (builder)=> ContactPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (builder)=> ContactPage(sourceChat:  widget.sourceChat,)));
         },
       ),
     );

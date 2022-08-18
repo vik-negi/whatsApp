@@ -176,7 +176,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
         ),
         subtitle: Text.rich(
-          TextSpan(text: userModel.status!),
+          TextSpan(text: userModel.status??""),
           maxLines: 1,
           softWrap: false,
         ),
