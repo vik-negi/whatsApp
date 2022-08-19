@@ -84,17 +84,25 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                                             vertical: 2, horizontal: 9),
                                         width: 67,
                                         child: Stack(
-                                          children: const [
+                                          children: [
                                             CircleAvatar(
-                                                radius: 30,
-                                                backgroundColor:
-                                                    Colors.blueGrey,
-                                                // child: SvgPicture.asset("assets/svgs/person.svg", height: 30,width:30, color: Colors.white),
-                                                child: Icon(
-                                                  Icons.person,
-                                                  color: Colors.white,
-                                                  size: 45,
-                                                )),
+                                              radius: 30,
+                                              backgroundColor: Colors.blueGrey,
+                                              // child: SvgPicture.asset("assets/svgs/person.svg", height: 30,width:30, color: Colors.white),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                clipBehavior: Clip.hardEdge,
+                                                child: Image.asset(userModel[i]
+                                                        .avatarUrl ??
+                                                    "assets/svgs/person.svg"),
+                                              ),
+                                              // Icon(
+                                              // Icons.person,
+                                              // color: Colors.white,
+                                              // size: 45,
+                                              // )
+                                            ),
                                             Positioned(
                                                 bottom: 0,
                                                 right: 0,
@@ -153,10 +161,17 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           child: Stack(
             children: [
               CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.blueGrey[200],
-                  // child: SvgPicture.asset("assets/svgs/person.svg", height: 30,width:30, color: Colors.white),
-                  child: const Icon(Icons.person, color: Colors.white)),
+                radius: 20,
+                backgroundColor: Colors.blueGrey[200],
+                // child: SvgPicture.asset("assets/svgs/person.svg", height: 30,width:30, color: Colors.white),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  clipBehavior: Clip.hardEdge,
+                  child: Image.asset(
+                      userModel.avatarUrl ?? "assets/svgs/person.svg"),
+                ),
+              ),
+              // const Icon(Icons.person, color: Colors.white)),
               if (userModel.select != null && userModel.select == true)
                 const Positioned(
                     bottom: 2,
@@ -176,7 +191,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
         ),
         subtitle: Text.rich(
-          TextSpan(text: userModel.status??""),
+          TextSpan(text: userModel.status ?? ""),
           maxLines: 1,
           softWrap: false,
         ),

@@ -7,6 +7,7 @@ List<StatusModel> statusModel = [
     status: ["assets/img/status/whatsapp-status-1.jpg"],
     caption: "This is my status",
     name: "Vashnavi thakur",
+    avatarUrl: "assets/img/profile/dp-5.jpg",
   ),
   StatusModel(
     time: "5:50",
@@ -18,6 +19,7 @@ List<StatusModel> statusModel = [
     ],
     caption: "This is my status",
     name: 'Abhishek Gupta',
+    avatarUrl: "assets/img/profile/dp-7.jpg",
   ),
   StatusModel(
     time: "2:15",
@@ -28,25 +30,30 @@ List<StatusModel> statusModel = [
     ],
     caption: "This is my status",
     name: 'Viraj bisht',
+    avatarUrl: "assets/img/profile/dp-17.jpg",
   ),
   StatusModel(
-      time: "14:05",
-      status: [
-        "assets/img/status/whatsapp-status-1.jpg",
-        "assets/img/status/whatsapp-status-8.jpg",
-        "assets/img/status/whatsapp-status-10.jpg",
-      ],
-      caption: "This is my status",
-      name: "Imran"),
+    time: "14:05",
+    status: [
+      "assets/img/status/whatsapp-status-1.jpg",
+      "assets/img/status/whatsapp-status-8.jpg",
+      "assets/img/status/whatsapp-status-10.jpg",
+    ],
+    caption: "This is my status",
+    name: "Imran",
+    avatarUrl: "assets/img/profile/dp-12.jpg",
+  ),
   StatusModel(
-      time: "6:14",
-      status: [
-        "assets/img/status/whatsapp-status-12.jpg",
-        "assets/img/status/whatsapp-status-13.jpg",
-        "assets/img/status/whatsapp-status-16.jpg",
-      ],
-      caption: "status",
-      name: "Anshul"),
+    time: "6:14",
+    status: [
+      "assets/img/status/whatsapp-status-12.jpg",
+      "assets/img/status/whatsapp-status-13.jpg",
+      "assets/img/status/whatsapp-status-16.jpg",
+    ],
+    caption: "status",
+    name: "Anshul",
+    avatarUrl: "assets/img/profile/dp-10.jpg",
+  ),
 ];
 
 List<ChatModel> chatModel = [
@@ -54,8 +61,7 @@ List<ChatModel> chatModel = [
     name: "Vikram Negi",
     message: "Hey, How do you do?",
     time: "15: 20",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-1.jpg",
     isgroup: false,
     id: 1,
   ),
@@ -63,8 +69,7 @@ List<ChatModel> chatModel = [
     name: "Vashnavi thakur",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-2.jpg",
     isgroup: false,
     id: 2,
   ),
@@ -73,7 +78,7 @@ List<ChatModel> chatModel = [
   //   name : "vishwaas singh",
   //   message : "ha ha ha!!",
   //   time : "17: 17",
-  //   avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", isgroup: true, id: 15,
+  //   avatarUrl : "assets/img/profile/dp-3.jpg", isgroup: true, id: 15,
   // ),
 ];
 List<UserModel> userModel = [
@@ -82,8 +87,7 @@ List<UserModel> userModel = [
     status: "U may call me VICTAR",
     message: "Hey, How do you do?",
     time: "15: 20",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-4.jpg",
     isgroup: false,
     id: 3,
   ),
@@ -91,8 +95,7 @@ List<UserModel> userModel = [
     name: "Vashnavi thakur",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-5.jpg",
     isgroup: false,
     id: 4,
   ),
@@ -100,15 +103,14 @@ List<UserModel> userModel = [
   //   name : "vishwaas singh",
   //   message : "ha ha ha!!",
   //   time : "17: 17",
-  //   avatarUrl : "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg", isgroup: true, id: 5,
+  //   avatarUrl : "assets/img/profile/dp-6.jpg", isgroup: true, id: 5,
   // ),
   UserModel(
     name: "Abhishek Gupta",
     status: "U may call me VICTAR",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-7.jpg",
     isgroup: false,
     id: 6,
   ),
@@ -117,8 +119,7 @@ List<UserModel> userModel = [
     status: "At Work",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-8.jpg",
     isgroup: false,
     id: 7,
   ),
@@ -127,8 +128,7 @@ List<UserModel> userModel = [
     status: "Busy",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-9.jpg",
     isgroup: false,
     id: 8,
   ),
@@ -137,8 +137,7 @@ List<UserModel> userModel = [
     status: "Like a sun",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-10.jpg",
     isgroup: false,
     id: 9,
   ),
@@ -147,8 +146,7 @@ List<UserModel> userModel = [
     status: "Single hi hu",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-10.jpg",
     isgroup: false,
     id: 10,
   ),
@@ -157,8 +155,7 @@ List<UserModel> userModel = [
     status: "A for apple, b for ball duniya is goal",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-11.jpg",
     isgroup: false,
     id: 11,
   ),
@@ -167,8 +164,7 @@ List<UserModel> userModel = [
     status: "..For everyone",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-12.jpg",
     isgroup: false,
     id: 12,
   ),
@@ -177,8 +173,7 @@ List<UserModel> userModel = [
     status: "Har Har Mahadev",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-13.jpg",
     isgroup: false,
     id: 13,
   ),
@@ -187,8 +182,7 @@ List<UserModel> userModel = [
     status: "The most powerful words other than I LOVE YOU vujgug hvug ",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-14.jpg",
     isgroup: false,
     id: 14,
   ),
@@ -197,8 +191,7 @@ List<UserModel> userModel = [
     status: "Breaks your limits and outgrow yourself",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-15.jpg",
     isgroup: false,
     id: 15,
   ),
@@ -207,8 +200,7 @@ List<UserModel> userModel = [
     status: "Konichiwa meena san",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-16.jpg",
     isgroup: false,
     id: 16,
   ),
@@ -217,8 +209,7 @@ List<UserModel> userModel = [
     status: "It's only and only about me",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-17.jpg",
     isgroup: false,
     id: 17,
   ),
@@ -227,8 +218,7 @@ List<UserModel> userModel = [
     status: "Urgent call only",
     message: "Are you ready!!!",
     time: "17: 14",
-    avatarUrl:
-        "https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/w1200-h630-p-k-no-nu/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg",
+    avatarUrl: "assets/img/profile/dp-18.jpg",
     isgroup: false,
     id: 18,
   ),

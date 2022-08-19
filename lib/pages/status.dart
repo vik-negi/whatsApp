@@ -53,14 +53,20 @@ class _StatusState extends State<Status> {
                         foregroundColor: Theme.of(context).primaryColor,
                         backgroundColor:
                             const Color.fromARGB(255, 218, 218, 218),
-                        child:
-                            Stack(clipBehavior: Clip.hardEdge, children: const [
-                          Icon(
-                            Icons.person,
-                            color: Colors.white,
-                            size: 40,
-                          ),
-                        ]),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          clipBehavior: Clip.hardEdge,
+                          child: Image.asset(statusModel[i].avatarUrl),
+                        ),
+                        //     Stack(
+                        //       clipBehavior: Clip.hardEdge,
+                        //       children: const [
+                        //   Icon(
+                        //     Icons.person,
+                        //     color: Colors.white,
+                        //     size: 40,
+                        //   ),
+                        // ]),
                       ),
                       title: Text(
                         statusModel[i].name,

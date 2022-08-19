@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import 'package:whatsapp/data/UserInfo.dart';
 import 'package:whatsapp/models/chat_model.dart';
+import 'package:whatsapp/models/status_model.dart';
 import 'package:whatsapp/pages/userChatPage.dart';
 
 class CustomUser extends StatelessWidget {
@@ -40,10 +42,14 @@ class CustomUser extends StatelessWidget {
             onTap: () {
               if (isChatPage || isContactPage) {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            UserChatPage(userModel, sourceChat)));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UserChatPage(
+                      userModel,
+                      sourceChat,
+                    ),
+                  ),
+                );
               }
             },
             child: CustomUserCard(
@@ -157,14 +163,14 @@ class CustomUserCard extends StatelessWidget {
 }
 
 class CircularAvatarWidget extends StatelessWidget {
-  const CircularAvatarWidget(
-      {Key? key,
-      required this.userModel,
-      required this.radiusOfAvatar,
-      required this.isChatPage,
-      required this.isStatusPage,
-      required this.isContactPage})
-      : super(key: key);
+  const CircularAvatarWidget({
+    Key? key,
+    required this.userModel,
+    required this.radiusOfAvatar,
+    required this.isChatPage,
+    required this.isStatusPage,
+    required this.isContactPage,
+  }) : super(key: key);
   final double radiusOfAvatar;
   final bool isChatPage;
   final bool isContactPage;
@@ -178,17 +184,16 @@ class CircularAvatarWidget extends StatelessWidget {
       radius: radiusOfAvatar,
       foregroundColor: Theme.of(context).primaryColor,
       backgroundColor: const Color.fromARGB(255, 218, 218, 218),
-      // backgroundImage: NetworkImage(userModel[i].avatarUrl),
-
-      child: Stack(clipBehavior: Clip.hardEdge, children: [
-        Icon(
-          userModel.isgroup ? Icons.group_rounded : Icons.person,
-          color: Colors.white,
-          size: 40,
-        ),
-      ]),
-
-      // :SvgPicture.asset("assets/svgs/person.svg", color: const Color.fromARGB(255, 207, 207, 207), width: 32,height: 32,),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        clipBehavior: Clip.hardEdge,
+        child: Image.asset(userModel.avatarUrl ?? "assets/svgs/person.svg"),
+        // Icon(
+        //   userModel.isgroup ? Icons.group_rounded : Icons.person,
+        //   color: Colors.white,
+        //   size: 40,
+        // ),
+      ),
     );
   }
 }
