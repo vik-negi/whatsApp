@@ -12,10 +12,15 @@ import 'package:whatsapp/models/more_option_to_send.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class UserChatPage extends StatefulWidget {
-  const UserChatPage(this.userModel, this.sourceChat, {Key? key})
-      : super(key: key);
+  const UserChatPage({
+    Key? key,
+    required this.userModel,
+    required this.sourceChat,
+    this.isWeb,
+  }) : super(key: key);
   final UserModel userModel;
   final UserModel sourceChat;
+  final bool? isWeb;
 
   @override
   State<UserChatPage> createState() => _UserChatPageState();
@@ -175,22 +180,66 @@ class _UserChatPageState extends State<UserChatPage> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: SizedBox(
-        height: 60,
+        height: widget.isWeb! ? 70 : 60,
+        // width: widget.isWeb!
+        //     ? MediaQuery.of(context).size.width - 400
+        //     : MediaQuery.of(context).size.width - 55,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Padding(
+            Container(
               padding: const EdgeInsets.only(left: 2.0, right: 2),
+              color:
+                  widget.isWeb! ? const Color(0xfff0f2f5) : Colors.transparent,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  widget.isWeb!
+                      ? IconButton(
+                          icon: const Icon(
+                            Icons.emoji_emotions_outlined,
+                            size: 28,
+                            color: Colors.grey,
+                          ),
+                          onPressed: () {
+                            focusNode.unfocus();
+                            focusNode.canRequestFocus = false;
+                            setState(() {
+                              showEnojiOption = !showEnojiOption;
+                            });
+                          },
+                        )
+                      : const SizedBox(),
+                  widget.isWeb!
+                      ? IconBtn(
+                          icon: Icons.attach_file,
+                          iconOnPress: () {
+                            showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              context: context,
+                              builder: (builder) {
+                                // return const MoreOptionsToSend();
+                                return Mots(
+                                  height: 380,
+                                  list: moreOptionsToSend,
+                                  borderR: 15,
+                                );
+                              },
+                            );
+                          },
+                        )
+                      : const SizedBox(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width - 55,
+                    width: widget.isWeb!
+                        ? MediaQuery.of(context).size.width - 535
+                        : MediaQuery.of(context).size.width - 55,
                     child: Card(
                       margin:
                           const EdgeInsets.only(left: 4, right: 2, bottom: 6),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)),
+                          borderRadius: widget.isWeb!
+                              ? BorderRadius.circular(10)
+                              : BorderRadius.circular(25)),
                       child: TextFormField(
                         onChanged: (value) {
                           value.isNotEmpty
@@ -210,64 +259,75 @@ class _UserChatPageState extends State<UserChatPage> {
                           border: InputBorder.none,
                           hintText: "Message",
                           hintStyle: const TextStyle(fontSize: 18),
-                          prefixIcon: IconButton(
-                            icon: const Icon(
-                              Icons.emoji_emotions_outlined,
-                              size: 28,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {
-                              focusNode.unfocus();
-                              focusNode.canRequestFocus = false;
-                              setState(() {
-                                showEnojiOption = !showEnojiOption;
-                              });
-                            },
-                          ),
-                          contentPadding: const EdgeInsets.all(5),
-                          suffixIcon: Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.09,
-                                  child: IconBtn(
-                                    icon: Icons.attach_file,
-                                    iconOnPress: () {
-                                      showModalBottomSheet(
-                                        backgroundColor: Colors.transparent,
-                                        context: context,
-                                        builder: (builder) {
-                                          // return const MoreOptionsToSend();
-                                          return Mots(
-                                            height: 380,
-                                            list: moreOptionsToSend,
-                                            borderR: 15,
-                                          );
-                                        },
-                                      );
-                                    },
+                          prefixIcon: !widget.isWeb!
+                              ? IconButton(
+                                  icon: const Icon(
+                                    Icons.emoji_emotions_outlined,
+                                    size: 28,
+                                    color: Colors.grey,
                                   ),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.09,
-                                  child: const IconBtn(
-                                    icon: Icons.currency_rupee,
+                                  onPressed: () {
+                                    focusNode.unfocus();
+                                    focusNode.canRequestFocus = false;
+                                    setState(() {
+                                      showEnojiOption = !showEnojiOption;
+                                    });
+                                  },
+                                )
+                              : null,
+                          contentPadding: widget.isWeb!
+                              ? const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 15)
+                              : const EdgeInsets.all(5),
+                          suffixIcon: !widget.isWeb!
+                              ? Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.09,
+                                        child: IconBtn(
+                                          icon: Icons.attach_file,
+                                          iconOnPress: () {
+                                            showModalBottomSheet(
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              context: context,
+                                              builder: (builder) {
+                                                // return const MoreOptionsToSend();
+                                                return Mots(
+                                                  height: 380,
+                                                  list: moreOptionsToSend,
+                                                  borderR: 15,
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.09,
+                                        child: const IconBtn(
+                                          icon: Icons.currency_rupee,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.09,
+                                        child: const IconBtn(
+                                          icon: Icons.camera_alt,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.09,
-                                  child: const IconBtn(
-                                    icon: Icons.camera_alt,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                                )
+                              : null,
                         ),
                       ),
                     ),
@@ -276,7 +336,9 @@ class _UserChatPageState extends State<UserChatPage> {
                     padding: const EdgeInsets.only(bottom: 6.0),
                     child: CircleAvatar(
                       radius: 24.5,
-                      backgroundColor: const Color(0xff128c7E),
+                      backgroundColor: !widget.isWeb!
+                          ? const Color(0xff128c7E)
+                          : const Color.fromARGB(128, 255, 255, 255),
                       child: IconButton(
                           onPressed: () {
                             if (sendButton) {
@@ -373,8 +435,11 @@ class _UserChatPageState extends State<UserChatPage> {
       ),
       title: userChatTitle(),
       actions: [
-        IconButton(onPressed: () {}, icon: const Icon(Icons.videocam)),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.call)),
+        if (!widget.isWeb!)
+          IconButton(onPressed: () {}, icon: const Icon(Icons.videocam)),
+        !widget.isWeb!
+            ? IconButton(onPressed: () {}, icon: const Icon(Icons.call))
+            : IconButton(onPressed: () {}, icon: const Icon(Icons.call)),
         PopupMenuBtn(items: userChatMenuBtn)
       ],
     );

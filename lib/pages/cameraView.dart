@@ -5,13 +5,14 @@ import 'package:whatsapp/pages/chat.dart';
 import 'package:video_player/video_player.dart';
 
 class CameraViewPage extends StatefulWidget {
-  final  String path;
+  final String path;
   final bool isCamera;
-  
 
-  const CameraViewPage({Key? key, required this.path, required this.isCamera})
-      : super(key: key);
-
+  const CameraViewPage({
+    Key? key,
+    required this.path,
+    required this.isCamera,
+  }) : super(key: key);
 
   @override
   State<CameraViewPage> createState() => _CameraViewPageState();
@@ -20,23 +21,21 @@ class CameraViewPage extends StatefulWidget {
 class _CameraViewPageState extends State<CameraViewPage> {
   late VideoPlayerController _controller;
   bool playPauseBtn = false;
- 
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      const Duration(milliseconds: 500)).then((value){
-        setState(() {
-          playPauseBtn = false;
-        });
+    Future.delayed(const Duration(milliseconds: 500)).then((value) {
+      setState(() {
+        playPauseBtn = false;
       });
+    });
     _controller = VideoPlayerController.file(File(widget.path))
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
       });
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -83,19 +82,19 @@ class _CameraViewPageState extends State<CameraViewPage> {
                     )
                   : _controller.value.isInitialized
                       ? InkWell(
-                        onTap: () {
-                    setState(() {
-                      playPauseBtn=!playPauseBtn;
-                      _controller.value.isPlaying
-                          ? _controller.pause()
-                          : _controller.play();
-                    });
-                  },
-                        child: AspectRatio(
+                          onTap: () {
+                            setState(() {
+                              playPauseBtn = !playPauseBtn;
+                              _controller.value.isPlaying
+                                  ? _controller.pause()
+                                  : _controller.play();
+                            });
+                          },
+                          child: AspectRatio(
                             aspectRatio: _controller.value.aspectRatio,
                             child: VideoPlayer(_controller),
                           ),
-                      )
+                        )
                       : Container(),
             ),
             Positioned(
@@ -157,18 +156,20 @@ class _CameraViewPageState extends State<CameraViewPage> {
                 ),
               ),
             ),
-            playPauseBtn?Align(
-              alignment: Alignment.center,
-              child: CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.black12,
-                  child: Icon(
-                      _controller.value.isPlaying
-                          ? Icons.pause
-                          : Icons.play_arrow,
-                      size: 50),
+            playPauseBtn
+                ? Align(
+                    alignment: Alignment.center,
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.black12,
+                      child: Icon(
+                          _controller.value.isPlaying
+                              ? Icons.pause
+                              : Icons.play_arrow,
+                          size: 50),
                     ),
-            ):Container(),
+                  )
+                : Container(),
           ],
         ),
       ),

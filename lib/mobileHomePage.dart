@@ -19,13 +19,6 @@ class WhatsAppHome extends StatefulWidget {
 
 class _WhatsAppHomeState extends State<WhatsAppHome>
     with SingleTickerProviderStateMixin {
-  // static const List<Tab> tabsList = <Tab>[
-  //   Tab(icon: Icon(Icons.camera_alt),),
-  //   Tab(text: "CHATS",),
-  //   Tab(text: "STATUS",),
-  //   Tab(text: "CALLS",),
-  // ];
-
   TabController? _tabController;
   List<String> homePagePopUpMenu = [
     "New group",
@@ -51,13 +44,7 @@ class _WhatsAppHomeState extends State<WhatsAppHome>
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-          appBar:
-              // PreferredSize(
-              // preferredSize: const Size.fromHeight(75),
-              // child: Visibility(
-              // visible: true,
-              // child:
-              AppBar(
+          appBar: AppBar(
             title: const Text("WhatsApp"),
             elevation: 0,
             actions: [
@@ -111,22 +98,18 @@ class _WhatsAppHomeState extends State<WhatsAppHome>
               ],
             ),
           ),
-          //   ),
-          // ),
-          // :PreferredSize(
-          // preferredSize: Size.fromHeight(0),
-          // child: AppBar(toolbarHeight: 0,)),
           body: TabBarView(controller: _tabController, children: [
-            Camera(),
+            const Camera(),
             Chats(
               userModelChat: widget.userModel,
               sourceChat: widget.sourceChat,
+              isWeb: false,
             ),
             Status(
               userModelChat: widget.userModel,
               sourceChat: widget.sourceChat,
             ),
-            Hii(),
+            const Hii(),
           ])),
     );
   }

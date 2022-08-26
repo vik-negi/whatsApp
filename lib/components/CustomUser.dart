@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter/rendering.dart';
 import 'package:whatsapp/data/UserInfo.dart';
 import 'package:whatsapp/models/chat_model.dart';
 import 'package:whatsapp/models/status_model.dart';
@@ -45,8 +46,11 @@ class CustomUser extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => UserChatPage(
-                      userModel,
-                      sourceChat,
+                      userModel: userModel,
+                      sourceChat: sourceChat,
+                      isWeb: (MediaQuery.of(context).size.width > 700)
+                          ? true
+                          : false,
                     ),
                   ),
                 );

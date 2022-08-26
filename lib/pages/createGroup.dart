@@ -103,7 +103,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                                               // size: 45,
                                               // )
                                             ),
-                                            Positioned(
+                                            const Positioned(
                                                 bottom: 0,
                                                 right: 0,
                                                 child: CircleAvatar(
