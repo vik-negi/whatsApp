@@ -10,6 +10,7 @@ import 'package:whatsapp/models/chat_model.dart';
 import 'package:whatsapp/models/message_model.dart';
 import 'package:whatsapp/models/more_option_to_send.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
+import 'package:whatsapp/pages/Individual%20_user_details.dart';
 
 class UserChatPage extends StatefulWidget {
   const UserChatPage({
@@ -180,7 +181,7 @@ class _UserChatPageState extends State<UserChatPage> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: SizedBox(
-        height: widget.isWeb! ? 70 : 60,
+        // height: widget.isWeb! ? 70 : 500,
         // width: widget.isWeb!
         //     ? MediaQuery.of(context).size.width - 400
         //     : MediaQuery.of(context).size.width - 55,
@@ -355,7 +356,10 @@ class _UserChatPageState extends State<UserChatPage> {
                             }
                           },
                           icon: Icon(sendButton ? Icons.send : Icons.mic,
-                              color: Colors.white, size: sendButton ? 23 : 25)),
+                              color: widget.isWeb!
+                                  ? Colors.grey.shade800
+                                  : Colors.white,
+                              size: sendButton ? 23 : 25)),
                     ),
                   ),
                 ],
@@ -411,23 +415,40 @@ class _UserChatPageState extends State<UserChatPage> {
 
   AppBar userChatAppBar(BuildContext context) {
     return AppBar(
-      leadingWidth: 75,
-      toolbarHeight: 55,
+      // backgroundColor: widget.isWeb!?const Color(0xfff0f2f5):Theme.of(context).primaryColor,
+      leadingWidth: widget.isWeb! ? 90 : 75,
+      toolbarHeight: widget.isWeb! ? 65 : 55,
       titleSpacing: 0,
+      elevation: 0,
       leading: Padding(
-        padding: const EdgeInsets.only(left: 4.0),
+        padding: widget.isWeb!
+            ? const EdgeInsets.only(right: 1, left: 1, top: 10, bottom: 10)
+            // only(left: 4.0)
+            : const EdgeInsets.only(left: 0),
         child: InkWell(
           onTap: () {
-            Navigator.pop(context);
+            if (widget.isWeb == false) {
+              Navigator.pop(context);
+            }
           },
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            const Icon(Icons.arrow_back),
+            !widget.isWeb!
+                ? SizedBox(
+                    width: 25,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_back,
+                      ),
+                    ),
+                  )
+                : Container(width: 1),
             CircularAvatarWidget(
               isContactPage: true,
               isChatPage: false,
               userModel: widget.userModel,
-              radiusOfAvatar: 22,
+              radiusOfAvatar: 20,
               isStatusPage: false,
             ),
           ]),
@@ -439,7 +460,11 @@ class _UserChatPageState extends State<UserChatPage> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.videocam)),
         !widget.isWeb!
             ? IconButton(onPressed: () {}, icon: const Icon(Icons.call))
-            : IconButton(onPressed: () {}, icon: const Icon(Icons.call)),
+            : IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.search,
+                    color:
+                        widget.isWeb! ? Colors.grey.shade800 : Colors.white)),
         PopupMenuBtn(items: userChatMenuBtn)
       ],
     );
@@ -447,20 +472,35 @@ class _UserChatPageState extends State<UserChatPage> {
 
   Padding userChatTitle() {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: !widget.isWeb!
+          ? EdgeInsets.all(8)
+          : EdgeInsets.only(left: 4, top: 8, bottom: 8, right: 8),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      IndividualUserDetails(userModel: widget.userModel)));
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               widget.userModel.name,
-              style:
-                  const TextStyle(fontSize: 18.5, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18.5,
+                  fontWeight: widget.isWeb! ? FontWeight.w100 : FontWeight.bold,
+                  color: widget.isWeb! ? Colors.grey : Colors.white),
             ),
-            const Text(
-              "Last seen today at 5:04",
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+            Text(
+              widget.isWeb!
+                  ? "Click here for contact info"
+                  : "Last seen today at 5:04",
+              style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: widget.isWeb! ? FontWeight.w200 : FontWeight.w400,
+                  color: widget.isWeb! ? Colors.black : Colors.white),
             ),
           ],
         ),

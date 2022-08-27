@@ -39,7 +39,7 @@ class _WebHomePageState extends State<WebHomePage> {
           Column(
             children: [
               Container(
-                color: const Color(0xfff0f2f5),
+                color: Color(0xff3b4a54),
                 // height: userModel.length * 80,
                 width: 400,
                 child: Material(
@@ -53,20 +53,20 @@ class _WebHomePageState extends State<WebHomePage> {
                           children: [
                             CircularAvatarWidget(
                               userModel: widget.sourceChat,
-                              radiusOfAvatar: 25,
+                              radiusOfAvatar: 22,
                               isChatPage: false,
                               isStatusPage: true,
                               isContactPage: false,
                             ),
                             Row(children: [
-                              const AppBarActionBtn(
+                              AppBarActionBtn(
                                 iconName: Icons.circle,
-                                color: Colors.grey,
+                                color: Colors.grey.shade600,
                                 iconSize: 25,
                               ),
-                              const AppBarActionBtn(
+                              AppBarActionBtn(
                                 iconName: Icons.message,
-                                color: Colors.grey,
+                                color: Colors.grey[600],
                                 iconSize: 25,
                               ),
                               PopupMenuBtn(items: homePagePopUpMenu)
