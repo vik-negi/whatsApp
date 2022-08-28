@@ -39,8 +39,8 @@ class _WebHomePageState extends State<WebHomePage> {
           Column(
             children: [
               Container(
-                color: Color(0xff3b4a54),
-                // height: userModel.length * 80,
+                // color: Color(0xff3b4a54),
+                height: userModel.length * 80,
                 width: 400,
                 child: Material(
                   child: Column(
@@ -59,10 +59,23 @@ class _WebHomePageState extends State<WebHomePage> {
                               isContactPage: false,
                             ),
                             Row(children: [
-                              AppBarActionBtn(
-                                iconName: Icons.circle,
-                                color: Colors.grey.shade600,
-                                iconSize: 25,
+                              Stack(
+                                children: [
+                                  AppBarActionBtn(
+                                    iconName: Icons.circle_outlined,
+                                    color: Colors.grey.shade600,
+                                    iconSize: 25,
+                                  ),
+                                  Positioned(
+                                    top: 8,
+                                    right: 8,
+                                    child: Icon(Icons.circle,
+                                        color: Theme.of(context)
+                                            .primaryColor
+                                            .withOpacity(0.5),
+                                        size: 10),
+                                  ),
+                                ],
                               ),
                               AppBarActionBtn(
                                 iconName: Icons.message,
@@ -123,6 +136,7 @@ class _WebHomePageState extends State<WebHomePage> {
                               userModelChat: widget.userModel,
                               sourceChat: widget.sourceChat,
                               isWeb: true,
+                              controller: scrollController,
                             ),
                           ),
                         ),

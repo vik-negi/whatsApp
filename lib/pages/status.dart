@@ -44,6 +44,7 @@ class _StatusState extends State<Status> {
           Expanded(
             child: ListView.builder(
                 itemCount: statusModel.length,
+                padding: const EdgeInsets.all(0),
                 itemBuilder: (context, i) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),

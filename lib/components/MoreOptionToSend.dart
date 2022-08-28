@@ -84,12 +84,13 @@ class OptionsToSend extends StatelessWidget {
       {Key? key, this.iconWidget, this.name, this.color, this.functionality})
       : super(key: key);
   final iconWidget;
-  final  name;
+  final name;
   final color;
   final functionality;
 
   @override
   Widget build(BuildContext context) {
+    bool isWeb = MediaQuery.of(context).size.width > 700 ? true : false;
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -109,12 +110,17 @@ class OptionsToSend extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Text(
-            name,
-            style: const TextStyle(
-                // fontSize: 18,
-                ),
-          ),
+          !isWeb
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    name,
+                    style: const TextStyle(
+                        // fontSize: 18,
+                        ),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );
@@ -158,10 +164,10 @@ class _MotsState extends State<Mots> {
                   const EdgeInsets.symmetric(vertical: 30, horizontal: 65),
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 9.2,
-                    mainAxisSpacing: 18.5,
-                    ),
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 9.2,
+                  mainAxisSpacing: 18.5,
+                ),
                 itemCount: widget.list.length,
                 itemBuilder: (context, i) {
                   return OptionsToSend(
@@ -172,5 +178,36 @@ class _MotsState extends State<Mots> {
                 },
               ),
             )));
+  }
+}
+
+class MotsWeb extends StatelessWidget {
+  const MotsWeb({
+    Key? key,
+    required this.list,
+  }) : super(key: key);
+  final List<MoreOption> list;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: (MediaQuery.of(context).size.width * 0.5 - 40)),
+      child: Container(
+        padding: const EdgeInsets.only(bottom: 65),
+        width: 80,
+        height: 600,
+        child: ListView.builder(
+          itemCount: list.length,
+          itemBuilder: (context, i) {
+            return OptionsToSend(
+              name: list[i].name,
+              color: list[i].color,
+              iconWidget: list[i].iconName,
+            );
+          },
+        ),
+      ),
+    );
   }
 }

@@ -55,6 +55,19 @@ class _UserChatPageState extends State<UserChatPage> {
         name: "Location", iconName: Icons.location_pin, color: Colors.green),
     MoreOption(name: "Contact", iconName: Icons.person, color: Colors.blue)
   ];
+  List<MoreOption> moreOptionsToSendWeb = [
+    MoreOption(name: "Contact", iconName: Icons.person, color: Colors.blue),
+    MoreOption(
+        name: "Document",
+        iconName: Icons.insert_drive_file,
+        color: Colors.indigo),
+    MoreOption(
+        name: "Camera", iconName: Icons.photo_camera, color: Colors.pink),
+    MoreOption(
+        name: "Sticker", iconName: Icons.memory, color: Colors.blue.shade600),
+    MoreOption(
+        name: "Photos & Video", iconName: Icons.photo, color: Colors.purple),
+  ];
 
   List<MessageModel> messages = [];
 
@@ -216,15 +229,14 @@ class _UserChatPageState extends State<UserChatPage> {
                           icon: Icons.attach_file,
                           iconOnPress: () {
                             showModalBottomSheet(
+                              elevation: 0,
+                              barrierColor: Colors.transparent,
                               backgroundColor: Colors.transparent,
+                              anchorPoint: const Offset(0, 0),
                               context: context,
                               builder: (builder) {
                                 // return const MoreOptionsToSend();
-                                return Mots(
-                                  height: 380,
-                                  list: moreOptionsToSend,
-                                  borderR: 15,
-                                );
+                                return MotsWeb(list: moreOptionsToSendWeb);
                               },
                             );
                           },
@@ -415,8 +427,10 @@ class _UserChatPageState extends State<UserChatPage> {
 
   AppBar userChatAppBar(BuildContext context) {
     return AppBar(
-      // backgroundColor: widget.isWeb!?const Color(0xfff0f2f5):Theme.of(context).primaryColor,
-      leadingWidth: widget.isWeb! ? 90 : 75,
+      backgroundColor: widget.isWeb!
+          ? const Color(0xfff0f2f5)
+          : Theme.of(context).primaryColor,
+      leadingWidth: widget.isWeb! ? 55 : 75,
       toolbarHeight: widget.isWeb! ? 65 : 55,
       titleSpacing: 0,
       elevation: 0,
@@ -474,7 +488,7 @@ class _UserChatPageState extends State<UserChatPage> {
     return Padding(
       padding: !widget.isWeb!
           ? EdgeInsets.all(8)
-          : EdgeInsets.only(left: 4, top: 8, bottom: 8, right: 8),
+          : EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 8),
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -491,7 +505,7 @@ class _UserChatPageState extends State<UserChatPage> {
               style: TextStyle(
                   fontSize: 18.5,
                   fontWeight: widget.isWeb! ? FontWeight.w100 : FontWeight.bold,
-                  color: widget.isWeb! ? Colors.grey : Colors.white),
+                  color: widget.isWeb! ? Colors.black : Colors.white),
             ),
             Text(
               widget.isWeb!

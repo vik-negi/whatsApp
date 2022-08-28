@@ -9,10 +9,12 @@ class Chats extends StatefulWidget {
     required this.userModelChat,
     required this.sourceChat,
     required this.isWeb,
+    required this.controller,
   }) : super(key: key);
   final List<UserModel> userModelChat;
   final UserModel sourceChat;
   final bool isWeb;
+  final ScrollController controller;
 
   @override
   State<Chats> createState() => _ChatsState();
@@ -24,6 +26,8 @@ class _ChatsState extends State<Chats> {
     return Scaffold(
       body: SingleChildScrollView(
         child: ListView.builder(
+          padding: const EdgeInsets.all(0),
+          // controller: widget.controller,
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           physics: const NeverScrollableScrollPhysics(),
